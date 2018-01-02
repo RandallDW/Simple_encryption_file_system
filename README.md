@@ -23,29 +23,29 @@ All designs are based on wrapfs source code.
 
 ### Add new file operations
     const struct file_operations xcfs_mmap_fops = {
-        .llseek		= generic_file_llseek,
-        .read_iter	= generic_file_read_iter,
-        .write_iter	= generic_file_write_iter,
-        .unlocked_ioctl	= xcfs_unlocked_ioctl,
+        .llseek             = generic_file_llseek,
+        .read_iter          = generic_file_read_iter,
+        .write_iter         = generic_file_write_iter,
+        .unlocked_ioctl     = xcfs_unlocked_ioctl,
         #ifdef CONFIG_COMPAT
-            .compat_ioctl	= xcfs_compat_ioctl,
+            .compat_ioctl   = xcfs_compat_ioctl,
         #endif
-        .mmap		= xcfs_mmap,
-        .open		= xcfs_open,
-        .flush		= xcfs_flush,
-        .release	= xcfs_file_release,
-        .fsync		= xcfs_fsync,
-        .fasync		= xcfs_fasync,
+        .mmap               = xcfs_mmap,
+        .open               = xcfs_open,
+        .flush              = xcfs_flush,
+        .release            = xcfs_file_release,
+        .fsync              = xcfs_fsync,
+        .fasync             = xcfs_fasync,
     };
 
 
 ### Add new address space operations
     const struct address_space_operations xcfs_aops = {
-        .direct_IO = xcfs_direct_IO,
-        .readpage = xcfs_readpage,
-        .writepage = xcfs_writepage,
+        .direct_IO   = xcfs_direct_IO,
+        .readpage    = xcfs_readpage,
+        .writepage   = xcfs_writepage,
         .write_begin = xcfs_write_begin,
-        .write_end = xcfs_write_end,
+        .write_end   = xcfs_write_end,
     };
 
 #### Encryption
@@ -58,7 +58,8 @@ All designs are based on wrapfs source code.
 ### Remove wrapfs_fault and replaced with ext4_filemap_fault 
 The old wrapfs_fault function existed bugs. 
 In wrapfs_fault, the upper layer inode points to NULL. This will cause bug when people try to compile a program with wrapfs.
-Solutions:
+<br />
+Two solutions:
 
     * Use ext4_filemap_fault
     * Adding page, and let upper layer inode pagetable point to it.
