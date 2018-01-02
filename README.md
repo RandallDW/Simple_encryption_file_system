@@ -59,12 +59,13 @@ All designs are based on wrapfs source code.
 The old wrapfs_fault function existed bugs. 
 In wrapfs_fault, the upper layer inode points to NULL. This will cause bug when people try to compile a program with wrapfs.
 Solutions:
+
     * Use ext4_filemap_fault
     * Adding page, and let upper layer inode pagetable point to it.
 
 In this project, I used first way to solve this bug. For more details, you could take a look of ecryptfs source code.
      
 ## Reference
-     * Wrapfs (http://wrapfs.filesystems.org/)
-     * Ecryptfs (https://github.com/torvalds/linux/tree/master/fs/ecryptf)
-     * Stackable File System (https://github.com/abhishekShukla/Linux-Stackable-File-System-)
+    * Wrapfs (http://wrapfs.filesystems.org/)
+    * Ecryptfs (https://github.com/torvalds/linux/tree/master/fs/ecryptf)
+    * Stackable File System (https://github.com/abhishekShukla/Linux-Stackable-File-System-)
