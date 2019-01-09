@@ -5,7 +5,7 @@ In this project, I developed an eXtremely simple enCryption File System (XCFS), 
 
 ## Running Environment
     * Linux Kernel v4.12
-
+    * Linux Kernel v4.15
 ## Packages 
     * Wrapfs source code
 
@@ -15,8 +15,18 @@ The newest Wrapfs only works under linux kernel v4.10
     * wrapfs_kernel_v4.12
         - Modified wrapfs source code. This version should
           work under kernel v4.12
-    * xcfs
+    * wrapfs_kernel_v4.15
+    * xcfs_v4.12
         - extremely simple encryption stackable file system
+    * xcfs_v4.15
+## How to run
+    ```
+    $ cd <correct xcfs folder>
+    $ make
+    $ sudo insmod xcfs
+    $ sudo mount -t xcfs <source folder dir> <dest folder dir>
+    $ sudo umount <dest folder dir>
+    ```
 
 ## Design
 All designs are based on wrapfs source code. 
@@ -70,3 +80,4 @@ In this project, I used first way to solve this bug. For more details, you could
     * Wrapfs (http://wrapfs.filesystems.org/)
     * Ecryptfs (https://github.com/torvalds/linux/tree/master/fs/ecryptf)
     * Stackable File System (https://github.com/abhishekShukla/Linux-Stackable-File-System-)
+
